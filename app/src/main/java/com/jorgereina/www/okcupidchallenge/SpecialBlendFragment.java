@@ -61,7 +61,7 @@ public class SpecialBlendFragment extends Fragment {
         results.enqueue(new Callback<OkcResponse>() {
             @Override
             public void onResponse(Call<OkcResponse> call, Response<OkcResponse> response) {
-                Log.d(TAG, "onResponse: " + response.isSuccessful());
+                Log.d(TAG, "onResponse: " + response.body().getData().get(0).getUsername());
             }
 
             @Override
