@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,10 +45,13 @@ public class SpecialBlendFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.special_blend_fragment, container, false);
+        dataList = new ArrayList<>();
         specialBundleRecyclerView = rootView.findViewById(R.id.special_blend_rv);
         layoutManager = new GridLayoutManager(getContext(), 2);
-        dataList = new ArrayList<>();
-        adapter = new SpecialBlendAdapter();
+//        layoutManager = new LinearLayoutManager(getContext());
+        adapter = new SpecialBlendAdapter(getContext(), dataList);
+        specialBundleRecyclerView.setLayoutManager(layoutManager);
+        specialBundleRecyclerView.setAdapter(adapter);
         return rootView;
     }
 
