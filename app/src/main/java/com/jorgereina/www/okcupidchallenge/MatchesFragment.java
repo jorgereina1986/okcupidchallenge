@@ -17,6 +17,7 @@ public class MatchesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.matches_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.matches_fragment, container, false);
+        return rootView;
     }
 }

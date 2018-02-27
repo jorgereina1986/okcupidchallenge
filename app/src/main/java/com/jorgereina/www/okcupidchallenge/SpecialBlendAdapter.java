@@ -9,6 +9,7 @@ import android.view.ViewGroup;
  */
 
 public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapter.ViewHolder> {
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
