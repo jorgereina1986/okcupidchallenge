@@ -53,6 +53,4 @@ public class OkcPagerAdapter extends FragmentPagerAdapter {
                 return null;
         }
     }
-
-
 }
