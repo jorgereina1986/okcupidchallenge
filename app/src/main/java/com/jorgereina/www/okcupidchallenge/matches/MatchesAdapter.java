@@ -1,6 +1,7 @@
-package com.jorgereina.www.okcupidchallenge;
+package com.jorgereina.www.okcupidchallenge.matches;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,29 +9,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
 import com.squareup.picasso.Picasso;
 
-import java.util.Date;
 import java.util.List;
 
 /**
- * Created by jorgereina on 2/26/18.
+ * Created by jorgereina on 2/27/18.
  */
 
-public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapter.ViewHolder> {
+public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHolder> {
 
     private Context context;
     private List<Data> dataList;
 
-    public SpecialBlendAdapter(Context context, List<Data> dataList) {
+    public MatchesAdapter(Context context, List<Data> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_card_item, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.profile_card_item, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -38,9 +39,7 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         Data data = dataList.get(position);
-        Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).into(holder.profileIv);
-        holder.usernameTv.setText(data.getUsername());
-
+        holder.bind(data);
     }
 
     @Override
@@ -50,12 +49,19 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView profileIv;
-        TextView usernameTv;
+        private ImageView profileIv;
+        private TextView username;
+
         public ViewHolder(View itemView) {
             super(itemView);
+
             profileIv = itemView.findViewById(R.id.profile_iv);
-            usernameTv = itemView.findViewById(R.id.username_tv);
+            username = itemView.findViewById(R.id.username_tv);
+        }
+
+        public void bind(Data data){
+            Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).resize(600,600).centerInside().into(profileIv);
+            username.setText(data.getUsername());
         }
     }
 }

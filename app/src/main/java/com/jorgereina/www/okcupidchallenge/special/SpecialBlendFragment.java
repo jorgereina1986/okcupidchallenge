@@ -1,18 +1,17 @@
-package com.jorgereina.www.okcupidchallenge;
+package com.jorgereina.www.okcupidchallenge.special;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
 import com.jorgereina.www.okcupidchallenge.model.OkcResponse;
 
@@ -38,6 +37,7 @@ public class SpecialBlendFragment extends Fragment {
     private RecyclerView specialBundleRecyclerView;
     private SpecialBlendAdapter adapter;
     private List<Data> dataList;
+    private List<Data> matchList;
     private RecyclerView.LayoutManager layoutManager;
 
 
@@ -46,10 +46,11 @@ public class SpecialBlendFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.special_blend_fragment, container, false);
         dataList = new ArrayList<>();
+        matchList = new ArrayList<>();
         specialBundleRecyclerView = rootView.findViewById(R.id.special_blend_rv);
         layoutManager = new GridLayoutManager(getContext(), 2);
 //        layoutManager = new LinearLayoutManager(getContext());
-        adapter = new SpecialBlendAdapter(getContext(), dataList);
+        adapter = new SpecialBlendAdapter(getContext(), dataList, matchList);
         specialBundleRecyclerView.setLayoutManager(layoutManager);
         specialBundleRecyclerView.setAdapter(adapter);
         return rootView;
@@ -72,19 +73,15 @@ public class SpecialBlendFragment extends Fragment {
         OkcService service =retrofit.create(OkcService.class);
 
         Call<OkcResponse> results = service.listResults();
-
         results.enqueue(new Callback<OkcResponse>() {
             @Override
             public void onResponse(Call<OkcResponse> call, Response<OkcResponse> response) {
-                Log.d(TAG, "onResponse: " + response.body().getData().get(0).getUsername());
-
                 dataList.addAll(response.body().getData());
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<OkcResponse> call, Throwable t) {
-
                 Toast.makeText(getContext(), t+"", Toast.LENGTH_LONG);
             }
         });

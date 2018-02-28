@@ -4,17 +4,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.jorgereina.www.okcupidchallenge.matches.MatchesFragment;
+import com.jorgereina.www.okcupidchallenge.special.SpecialBlendFragment;
 
 /**
  * Created by jorgereina on 2/26/18.
  */
 
-public class OkcPagerAdapter extends FragmentPagerAdapter {
+public class OkcViewPagerAdapter extends FragmentPagerAdapter {
 
     private static final int NUM_PAGES = 2;
 
-    public OkcPagerAdapter(FragmentManager fm) {
+    public OkcViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

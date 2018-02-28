@@ -1,4 +1,4 @@
-package com.jorgereina.www.okcupidchallenge;
+package com.jorgereina.www.okcupidchallenge.special;
 
 import com.jorgereina.www.okcupidchallenge.model.OkcResponse;
 

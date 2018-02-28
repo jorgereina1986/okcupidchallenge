@@ -31,6 +31,8 @@ public class Data {
     @Expose
     private int match;
 
+    private boolean isClicked = false;
+
     public Location getLocation() {
         return location;
     }
@@ -69,5 +71,13 @@ public class Data {
 
     public void setMatch(int match) {
         this.match = match;
+    }
+
+    public boolean isClicked() {
+        return isClicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        isClicked = clicked;
     }
 }
