@@ -46,7 +46,7 @@ public class MatchesFragment extends Fragment {
     }
 
     public void recieveDataforMatches(List<Data> list) {
-
+        list = new ArrayList<>();
         dataList.addAll(list);
         adapter.notifyDataSetChanged();
 

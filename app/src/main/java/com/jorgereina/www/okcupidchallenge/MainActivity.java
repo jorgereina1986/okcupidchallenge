@@ -7,10 +7,12 @@ import android.os.Bundle;
 
 import com.jorgereina.www.okcupidchallenge.matches.MatchesFragment;
 import com.jorgereina.www.okcupidchallenge.model.Data;
+import com.jorgereina.www.okcupidchallenge.special.SpecialBlendFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Communicator{
+public class MainActivity extends AppCompatActivity implements Communicator {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;

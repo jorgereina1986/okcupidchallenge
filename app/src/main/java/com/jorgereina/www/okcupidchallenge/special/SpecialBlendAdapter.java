@@ -71,26 +71,26 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
             Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).resize(400, 400).centerInside().into(profileIv);
             usernameTv.setText(data.getUsername());
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (!data.isClicked()) {
-                        data.setClicked(true);
-                        matchList.add(data);
-                        cardView.setCardBackgroundColor(Color.YELLOW);
-                        communicator.addToMatches(matchList);
-                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
-
-                    } else {
-                        data.setClicked(false);
-                        cardView.setCardBackgroundColor(0xFAFAFAFA);
-                        matchList.remove(data);
-                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
-
-                    }
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (!data.isClicked()) {
+//                        data.setClicked(true);
+//                        matchList.add(data);
+//                        cardView.setCardBackgroundColor(Color.YELLOW);
+//                        communicator.addToMatches(matchList);
+//                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
+//
+//                    } else {
+//                        data.setClicked(false);
+//                        cardView.setCardBackgroundColor(0xFAFAFAFA);
+//                        matchList.remove(data);
+//                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
+//
+//                    }
+//                }
+//            });
         }
     }
 }
