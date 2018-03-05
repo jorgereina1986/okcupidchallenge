@@ -12,11 +12,20 @@ import com.jorgereina.www.okcupidchallenge.special.SpecialBlendFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Communicator {
+public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
 
+    private String matchesFragment;
+
+    public String getMatchesFragment() {
+        return matchesFragment;
+    }
+
+    public void setMatchesFragment(String matchesFragment) {
+        this.matchesFragment = matchesFragment;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +37,13 @@ public class MainActivity extends AppCompatActivity implements Communicator {
         viewPager.setAdapter(pagerAdapter);
     }
 
-    @Override
-    public void addToMatches(List<Data> dataList) {
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        MatchesFragment matchesFragment = (MatchesFragment) fragmentManager.findFragmentById(R.id.matches_fragment);
-        matchesFragment.recieveDataforMatches(dataList);
+//    @Override
+//    public void addToMatches(Data data) {
+//        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//        MatchesFragment matchesFragment = (MatchesFragment) fragmentManager.findFragmentById(R.id.matches_fragment);
+////        MatchesFragment matchesFragment = new MatchesFragment();
+//        matchesFragment.recieveDataforMatches(data);
+//    }
 
-    }
+
 }

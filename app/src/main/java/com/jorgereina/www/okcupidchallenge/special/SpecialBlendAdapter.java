@@ -26,13 +26,10 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
 
     private Context context;
     private List<Data> dataList;
-    private List<Data> matchList;
-    Communicator communicator;
 
-    public SpecialBlendAdapter(Context context, List<Data> dataList, List<Data> matchList) {
+    public SpecialBlendAdapter(Context context, List<Data> dataList) {
         this.context = context;
         this.dataList = dataList;
-        this.matchList = matchList;
     }
 
     @Override
@@ -63,34 +60,12 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
             profileIv = itemView.findViewById(R.id.profile_iv);
             usernameTv = itemView.findViewById(R.id.username_tv);
             cardView = itemView.findViewById(R.id.card_view);
-            communicator = (Communicator) itemView.getContext();
         }
 
         public void bind(final Data data) {
 
             Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).resize(400, 400).centerInside().into(profileIv);
             usernameTv.setText(data.getUsername());
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                    if (!data.isClicked()) {
-//                        data.setClicked(true);
-//                        matchList.add(data);
-//                        cardView.setCardBackgroundColor(Color.YELLOW);
-//                        communicator.addToMatches(matchList);
-//                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
-//
-//                    } else {
-//                        data.setClicked(false);
-//                        cardView.setCardBackgroundColor(0xFAFAFAFA);
-//                        matchList.remove(data);
-//                        Toast.makeText(view.getContext(), data.isClicked() + " "+ matchList.size(), Toast.LENGTH_LONG).show();
-//
-//                    }
-//                }
-//            });
         }
     }
 }

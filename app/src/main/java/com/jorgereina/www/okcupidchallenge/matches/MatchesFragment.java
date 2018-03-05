@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jorgereina.www.okcupidchallenge.MainActivity;
 import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
 
@@ -25,30 +26,36 @@ public class MatchesFragment extends Fragment {
     private RecyclerView recyclerView;
     private MatchesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private List<Data> dataList;
+    private List<Data> dataList = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.matches_fragment, container, false);
-        dataList = new ArrayList<>();
         layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView = rootView.findViewById(R.id.matches_rv);
         adapter = new MatchesAdapter(getContext(), dataList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+        String tag = getTag();
+        ((MainActivity)getActivity()).setMatchesFragment(tag);
         return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        adapter.notifyDataSetChanged();
     }
 
-    public void recieveDataforMatches(List<Data> list) {
-        list = new ArrayList<>();
-        dataList.addAll(list);
+    public void addDataToList(Data data) {
+        dataList.add(data);
         adapter.notifyDataSetChanged();
+    }
 
+    public void removeDataFromList(Data data) {
+        dataList.remove(data);
+        adapter.notifyDataSetChanged();
     }
 }

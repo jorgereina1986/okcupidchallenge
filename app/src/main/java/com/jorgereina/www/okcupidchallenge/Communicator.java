@@ -9,5 +9,5 @@ import java.util.List;
  */
 
 public interface Communicator {
-    void addToMatches(List<Data> dataList);
+    void addToMatches(Data data);
 }
