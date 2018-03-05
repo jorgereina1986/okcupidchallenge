@@ -32,18 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewPager =  findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         pagerAdapter = new OkcViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
     }
-
-//    @Override
-//    public void addToMatches(Data data) {
-//        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//        MatchesFragment matchesFragment = (MatchesFragment) fragmentManager.findFragmentById(R.id.matches_fragment);
-////        MatchesFragment matchesFragment = new MatchesFragment();
-//        matchesFragment.recieveDataforMatches(data);
-//    }
-
-
 }

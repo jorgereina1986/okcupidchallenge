@@ -37,8 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SpecialBlendFragment extends Fragment {
 
-    private static final String BASE_URL= "https://www.okcupid.com/";
-    private static final String TAG = "lagarto";
+    private static final String BASE_URL = "https://www.okcupid.com/";
 
     private RecyclerView specialBundleRecyclerView;
     private SpecialBlendAdapter adapter;
@@ -67,18 +66,18 @@ public class SpecialBlendFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        showMatches();
+        networkConnection();
         itemSelection();
     }
 
-    private void showMatches() {
+    private void networkConnection() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        OkcService service =retrofit.create(OkcService.class);
+        OkcService service = retrofit.create(OkcService.class);
 
         Call<OkcResponse> results = service.listResults();
         results.enqueue(new Callback<OkcResponse>() {
@@ -90,14 +89,9 @@ public class SpecialBlendFragment extends Fragment {
 
             @Override
             public void onFailure(Call<OkcResponse> call, Throwable t) {
-                Toast.makeText(getContext(), t+"", Toast.LENGTH_LONG);
+                Toast.makeText(getContext(), t + "", Toast.LENGTH_LONG);
             }
         });
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
     }
 
     private void itemSelection() {
@@ -106,21 +100,21 @@ public class SpecialBlendFragment extends Fragment {
             public void onItemClick(View view, int position) {
 
                 Data item = dataList.get(position);
-
                 String matchesFragmentTag = ((MainActivity) getActivity()).getMatchesFragment();
+                MatchesFragment matchesFragment = (MatchesFragment) getActivity()
+                        .getSupportFragmentManager()
+                        .findFragmentByTag(matchesFragmentTag);
 
-                MatchesFragment matchesFragment = (MatchesFragment) getActivity().getSupportFragmentManager().findFragmentByTag(matchesFragmentTag);
-
-                if (!item.isClicked()){
+                if (!item.isClicked()) {
                     item.setClicked(true);
                     view.setBackgroundColor(Color.RED);
                     matchesFragment.addDataToList(item);
-                    Toast.makeText(view.getContext(), item.isClicked() + " "+ item.getUsername(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 } else {
                     item.setClicked(false);
                     view.setBackgroundColor(0xFAFAFAFA);
                     matchesFragment.removeDataFromList(item);
-                    Toast.makeText(view.getContext(), item.isClicked() + " "+ item.getUsername(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 }
             }
         }));

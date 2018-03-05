@@ -54,13 +54,16 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             profileIv = itemView.findViewById(R.id.profile_iv);
             username = itemView.findViewById(R.id.username_tv);
         }
 
-        public void bind(Data data){
-            Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).resize(600,600).centerInside().into(profileIv);
+        public void bind(Data data) {
+            Picasso.with(context)
+                    .load(data.getPhoto().getFullPath().getLarge())
+                    .resize(600, 600)
+                    .centerInside()
+                    .into(profileIv);
             username.setText(data.getUsername());
         }
     }
