@@ -101,16 +101,16 @@ public class SpecialBlendFragment extends Fragment {
                         .getSupportFragmentManager()
                         .findFragmentByTag(matchesFragmentTag);
 
-                if (!item.isClicked()) {
-                    item.setClicked(true);
+                if (!item.isLiked()) {
+                    item.setLiked(true);
                     view.setBackgroundColor(getResources().getColor(R.color.selectedCardViewColor));
                     matchesFragment.addDataToList(item);
-                    Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 } else {
-                    item.setClicked(false);
+                    item.setLiked(false);
                     view.setBackgroundColor(getResources().getColor(R.color.defaultCardViewColor));
                     matchesFragment.removeDataFromList(item);
-                    Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 }
             }
         }));

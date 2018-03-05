@@ -31,7 +31,9 @@ public class Data {
     @Expose
     private int match;
 
-    private boolean isClicked = false;
+    @SerializedName("liked")
+    @Expose
+    private boolean liked;
 
     public Location getLocation() {
         return location;
@@ -73,11 +75,11 @@ public class Data {
         this.match = match;
     }
 
-    public boolean isClicked() {
-        return isClicked;
+    public boolean isLiked() {
+        return liked;
     }
 
-    public void setClicked(boolean clicked) {
-        isClicked = clicked;
+    public void setLiked(boolean liked) {
+        this.liked = liked;
     }
 }
