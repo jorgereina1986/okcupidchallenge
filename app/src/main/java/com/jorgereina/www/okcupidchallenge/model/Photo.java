@@ -13,11 +13,23 @@ public class Photo {
     @Expose
     private FullPath fullPath;
 
+    @SerializedName("thumb_paths")
+    @Expose
+    private ThumbPath thumbPath;
+
     public FullPath getFullPath() {
         return fullPath;
     }
 
     public void setFullPath(FullPath fullPath) {
         this.fullPath = fullPath;
+    }
+
+    public ThumbPath getThumbPath() {
+        return thumbPath;
+    }
+
+    public void setThumbPath(ThumbPath thumbPath) {
+        this.thumbPath = thumbPath;
     }
 }

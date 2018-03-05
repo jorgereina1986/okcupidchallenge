@@ -37,7 +37,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         Data data = dataList.get(position);
         holder.bind(data);
     }
@@ -50,21 +49,22 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView profileIv;
-        private TextView username;
+        private TextView ageLocationTv;
+        private TextView usernameTv;
 
         public ViewHolder(View itemView) {
             super(itemView);
             profileIv = itemView.findViewById(R.id.profile_iv);
-            username = itemView.findViewById(R.id.username_tv);
+            ageLocationTv = itemView.findViewById(R.id.age_location_tv);
+            usernameTv = itemView.findViewById(R.id.username_tv);
         }
 
         public void bind(Data data) {
             Picasso.with(context)
-                    .load(data.getPhoto().getFullPath().getLarge())
-                    .resize(600, 600)
-                    .centerInside()
+                    .load(data.getPhoto().getThumbPath().getLarge())
                     .into(profileIv);
-            username.setText(data.getUsername());
+            ageLocationTv.setText(data.getAge() + " · " + data.getLocation().getCity() + ", " + data.getLocation().getStateCode());
+            usernameTv.setText(data.getUsername());
         }
     }
 }

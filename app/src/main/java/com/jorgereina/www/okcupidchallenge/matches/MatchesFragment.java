@@ -23,6 +23,8 @@ import java.util.List;
 
 public class MatchesFragment extends Fragment {
 
+    private static final int LAYOUT_MANAGER_SPAN_COUNT = 2;
+
     private RecyclerView recyclerView;
     private MatchesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -32,7 +34,7 @@ public class MatchesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.matches_fragment, container, false);
-        layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager = new GridLayoutManager(getContext(), LAYOUT_MANAGER_SPAN_COUNT);
         recyclerView = rootView.findViewById(R.id.matches_rv);
         adapter = new MatchesAdapter(getContext(), dataList);
         recyclerView.setLayoutManager(layoutManager);

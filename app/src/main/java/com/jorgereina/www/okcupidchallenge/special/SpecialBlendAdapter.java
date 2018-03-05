@@ -2,11 +2,14 @@ package com.jorgereina.www.okcupidchallenge.special;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +37,7 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_card_item, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.profile_card_item, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -51,20 +54,23 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView profileIv;
-        public TextView usernameTv;
-        public CardView cardView;
+        private ImageView profileIv;
+        private TextView ageLocationTv;
+        private TextView usernameTv;
 
         public ViewHolder(View itemView) {
             super(itemView);
             profileIv = itemView.findViewById(R.id.profile_iv);
+            ageLocationTv = itemView.findViewById(R.id.age_location_tv);
             usernameTv = itemView.findViewById(R.id.username_tv);
-            cardView = itemView.findViewById(R.id.card_view);
         }
 
         public void bind(final Data data) {
 
-            Picasso.with(context).load(data.getPhoto().getFullPath().getLarge()).resize(400, 400).centerInside().into(profileIv);
+            Picasso.with(context)
+                    .load(data.getPhoto().getThumbPath().getLarge())
+                    .into(profileIv);
+            ageLocationTv.setText(data.getAge() + " · " + data.getLocation().getCity() + ", " + data.getLocation().getStateCode());
             usernameTv.setText(data.getUsername());
         }
     }

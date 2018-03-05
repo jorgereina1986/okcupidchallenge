@@ -1,7 +1,5 @@
 package com.jorgereina.www.okcupidchallenge.special;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,14 +36,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SpecialBlendFragment extends Fragment {
 
     private static final String BASE_URL = "https://www.okcupid.com/";
+    private static final int LAYOUT_MANAGER_SPAN_COUNT = 2;
 
     private RecyclerView specialBundleRecyclerView;
     private SpecialBlendAdapter adapter;
     private List<Data> dataList;
     private RecyclerView.LayoutManager layoutManager;
     private CardView cardView;
-    private SpecialBlendFragment specialBlendFragment;
-
 
     @Nullable
     @Override
@@ -54,11 +51,10 @@ public class SpecialBlendFragment extends Fragment {
         dataList = new ArrayList<>();
         specialBundleRecyclerView = rootView.findViewById(R.id.special_blend_rv);
         cardView = rootView.findViewById(R.id.card_view);
-        layoutManager = new GridLayoutManager(getContext(), 2);
+        layoutManager = new GridLayoutManager(getContext(), LAYOUT_MANAGER_SPAN_COUNT);
         adapter = new SpecialBlendAdapter(getContext(), dataList);
         specialBundleRecyclerView.setLayoutManager(layoutManager);
         specialBundleRecyclerView.setAdapter(adapter);
-        specialBlendFragment = new SpecialBlendFragment();
         return rootView;
     }
 
@@ -67,7 +63,7 @@ public class SpecialBlendFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         networkConnection();
-        itemSelection();
+        onItemSelection();
     }
 
     private void networkConnection() {
@@ -94,8 +90,8 @@ public class SpecialBlendFragment extends Fragment {
         });
     }
 
-    private void itemSelection() {
-        
+    private void onItemSelection() {
+
         specialBundleRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -107,12 +103,12 @@ public class SpecialBlendFragment extends Fragment {
 
                 if (!item.isClicked()) {
                     item.setClicked(true);
-                    view.setBackgroundColor(Color.RED);
+                    view.setBackgroundColor(getResources().getColor(R.color.selectedCardViewColor));
                     matchesFragment.addDataToList(item);
                     Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 } else {
                     item.setClicked(false);
-                    view.setBackgroundColor(0xFAFAFAFA);
+                    view.setBackgroundColor(getResources().getColor(R.color.defaultCardViewColor));
                     matchesFragment.removeDataFromList(item);
                     Toast.makeText(view.getContext(), item.isClicked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
                 }
