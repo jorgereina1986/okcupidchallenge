@@ -1,5 +1,6 @@
 package com.jorgereina.www.okcupidchallenge;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
+    private TabLayout tabLayout;
 
     private String matchesFragment;
 
@@ -32,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_pager);
         pagerAdapter = new OkcViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

@@ -95,10 +95,10 @@ public class SpecialBlendFragment extends Fragment {
     }
 
     private void itemSelection() {
+        
         specialBundleRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
                 Data item = dataList.get(position);
                 String matchesFragmentTag = ((MainActivity) getActivity()).getMatchesFragment();
                 MatchesFragment matchesFragment = (MatchesFragment) getActivity()
