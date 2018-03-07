@@ -63,7 +63,7 @@ public class SpecialBlendFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         networkConnection();
-        onItemSelection();
+//        onItemSelection();
     }
 
     private void networkConnection() {
@@ -90,29 +90,29 @@ public class SpecialBlendFragment extends Fragment {
         });
     }
 
-    private void onItemSelection() {
-
-        specialBundleRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Data item = dataList.get(position);
-                String matchesFragmentTag = ((MainActivity) getActivity()).getMatchesFragment();
-                MatchesFragment matchesFragment = (MatchesFragment) getActivity()
-                        .getSupportFragmentManager()
-                        .findFragmentByTag(matchesFragmentTag);
-
-                if (!item.isLiked()) {
-                    item.setLiked(true);
-                    view.setBackgroundColor(getResources().getColor(R.color.selectedCardViewColor));
-                    matchesFragment.addDataToList(item);
-                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
-                } else {
-                    item.setLiked(false);
-                    view.setBackgroundColor(getResources().getColor(R.color.defaultCardViewColor));
-                    matchesFragment.removeDataFromList(item);
-                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
-                }
-            }
-        }));
-    }
+//    private void onItemSelection() {
+//
+//        specialBundleRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                Data item = dataList.get(position);
+//                String matchesFragmentTag = ((MainActivity) getActivity()).getMatchesFragment();
+//                MatchesFragment matchesFragment = (MatchesFragment) getActivity()
+//                        .getSupportFragmentManager()
+//                        .findFragmentByTag(matchesFragmentTag);
+//
+//                if (item.isLiked()) {
+//                    item.setLiked(false);
+//                    view.setBackgroundColor(getResources().getColor(R.color.defaultCardViewColor));
+//                    matchesFragment.removeDataFromList(item);
+//                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
+//                } else {
+//                    item.setLiked(true);
+//                    view.setBackgroundColor(getResources().getColor(R.color.selectedCardViewColor));
+//                    matchesFragment.addDataToList(item);
+//                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }));
+//    }
 }

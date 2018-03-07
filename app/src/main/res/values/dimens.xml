@@ -4,5 +4,7 @@
     <dimen name="tab_padding_bottom">10dp</dimen>
     <dimen name="text_padding_5dp">5dp</dimen>
     <dimen name="text_padding_10dp">10dp</dimen>
-    <dimen name="cardview_margin">5dp</dimen>
+    <dimen name="text_padding_15dp">15dp</dimen>
+    <dimen name="cardview_margin">10dp</dimen>
+    <dimen name="text_size_17sp">17sp</dimen>
 </resources>

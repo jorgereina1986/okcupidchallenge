@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jorgereina.www.okcupidchallenge.BaseViewHolder;
 import com.jorgereina.www.okcupidchallenge.Communicator;
 import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by jorgereina on 2/26/18.
  */
 
-public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapter.ViewHolder> {
+public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialViewHolder> {
 
     private Context context;
     private List<Data> dataList;
@@ -36,15 +37,16 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SpecialViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.profile_card_item, parent, false);
-        return new ViewHolder(itemView);
+        return new SpecialViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(SpecialViewHolder holder, int position) {
         Data data = dataList.get(position);
         holder.bind(data);
+
     }
 
     @Override
@@ -52,26 +54,5 @@ public class SpecialBlendAdapter extends RecyclerView.Adapter<SpecialBlendAdapte
         return dataList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView profileIv;
-        private TextView ageLocationTv;
-        private TextView usernameTv;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            profileIv = itemView.findViewById(R.id.profile_iv);
-            ageLocationTv = itemView.findViewById(R.id.age_location_tv);
-            usernameTv = itemView.findViewById(R.id.username_tv);
-        }
-
-        public void bind(final Data data) {
-
-            Picasso.with(context)
-                    .load(data.getPhoto().getThumbPath().getLarge())
-                    .into(profileIv);
-            ageLocationTv.setText(data.getAge() + " · " + data.getLocation().getCity() + ", " + data.getLocation().getStateCode());
-            usernameTv.setText(data.getUsername());
-        }
-    }
 }

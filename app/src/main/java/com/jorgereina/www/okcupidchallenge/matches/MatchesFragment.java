@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.jorgereina.www.okcupidchallenge.MainActivity;
 import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
+import com.jorgereina.www.okcupidchallenge.special.SpecialBlendAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MatchesFragment extends Fragment {
     private static final int LAYOUT_MANAGER_SPAN_COUNT = 2;
 
     private RecyclerView recyclerView;
-    private MatchesAdapter adapter;
+    private SpecialBlendAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Data> dataList = new ArrayList<>();
 
@@ -36,7 +37,7 @@ public class MatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.matches_fragment, container, false);
         layoutManager = new GridLayoutManager(getContext(), LAYOUT_MANAGER_SPAN_COUNT);
         recyclerView = rootView.findViewById(R.id.matches_rv);
-        adapter = new MatchesAdapter(getContext(), dataList);
+        adapter = new SpecialBlendAdapter(getContext(), dataList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         String tag = getTag();
