@@ -42,7 +42,6 @@ public class SpecialBlendFragment extends Fragment {
     private SpecialBlendAdapter adapter;
     private List<Data> dataList;
     private RecyclerView.LayoutManager layoutManager;
-    private CardView cardView;
 
     @Nullable
     @Override
@@ -50,7 +49,6 @@ public class SpecialBlendFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.special_blend_fragment, container, false);
         dataList = new ArrayList<>();
         specialBundleRecyclerView = rootView.findViewById(R.id.special_blend_rv);
-        cardView = rootView.findViewById(R.id.card_view);
         layoutManager = new GridLayoutManager(getContext(), LAYOUT_MANAGER_SPAN_COUNT);
         adapter = new SpecialBlendAdapter(getContext(), dataList);
         specialBundleRecyclerView.setLayoutManager(layoutManager);
@@ -63,7 +61,6 @@ public class SpecialBlendFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         networkConnection();
-//        onItemSelection();
     }
 
     private void networkConnection() {
@@ -89,30 +86,4 @@ public class SpecialBlendFragment extends Fragment {
             }
         });
     }
-
-//    private void onItemSelection() {
-//
-//        specialBundleRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                Data item = dataList.get(position);
-//                String matchesFragmentTag = ((MainActivity) getActivity()).getMatchesFragment();
-//                MatchesFragment matchesFragment = (MatchesFragment) getActivity()
-//                        .getSupportFragmentManager()
-//                        .findFragmentByTag(matchesFragmentTag);
-//
-//                if (item.isLiked()) {
-//                    item.setLiked(false);
-//                    view.setBackgroundColor(getResources().getColor(R.color.defaultCardViewColor));
-//                    matchesFragment.removeDataFromList(item);
-//                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
-//                } else {
-//                    item.setLiked(true);
-//                    view.setBackgroundColor(getResources().getColor(R.color.selectedCardViewColor));
-//                    matchesFragment.addDataToList(item);
-//                    Toast.makeText(view.getContext(), item.isLiked() + " " + item.getUsername(), Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        }));
-//    }
 }
