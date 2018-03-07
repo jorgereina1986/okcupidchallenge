@@ -43,4 +43,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     public int getItemCount() {
         return dataList.size();
     }
+
+
+    public void deleteItem(int index) {
+        dataList.remove(index);
+        notifyItemRemoved(index);
+    }
 }

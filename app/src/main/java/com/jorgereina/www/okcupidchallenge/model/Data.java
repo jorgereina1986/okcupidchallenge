@@ -1,5 +1,7 @@
 package com.jorgereina.www.okcupidchallenge.model;
 
+import android.support.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by jorgereina on 2/26/18.
  */
 
-public class Data {
+public class Data implements Comparable{
 
     // image / name / age / city / match percentage
 
@@ -81,5 +83,11 @@ public class Data {
 
     public void setLiked(boolean liked) {
         this.liked = liked;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int compareMatch = ((Data) o).getMatch();
+        return compareMatch-this.match;
     }
 }
