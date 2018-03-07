@@ -39,16 +39,20 @@ public class SpecialViewHolder extends BaseViewHolder {
 
                 if (data.isLiked()) {
                     data.setLiked(false);
-                    view.setBackgroundColor(matchesFragment.getResources().getColor(R.color.defaultCardViewColor));
+                    view.setBackgroundColor(getColor(matchesFragment, R.color.defaultCardViewColor));
                     matchesFragment.removeDataFromList(data);
                     Toast.makeText(view.getContext(), data.isLiked() + " " + data.getUsername(), Toast.LENGTH_LONG).show();
                 } else {
                     data.setLiked(true);
-                    cardView.setBackgroundColor(matchesFragment.getResources().getColor(R.color.selectedCardViewColor));
+                    cardView.setBackgroundColor(getColor(matchesFragment, R.color.selectedCardViewColor));
                     matchesFragment.addDataToList(data);
                     Toast.makeText(view.getContext(), data.isLiked() + " " + data.getUsername(), Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    private int getColor(MatchesFragment matchesFragment, int defaultCardViewColor) {
+        return matchesFragment.getResources().getColor(defaultCardViewColor);
     }
 }

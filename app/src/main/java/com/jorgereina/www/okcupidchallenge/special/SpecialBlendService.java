@@ -9,9 +9,7 @@ import retrofit2.http.GET;
  * Created by jorgereina on 2/26/18.
  */
 
-public interface OkcService {
-
+public interface SpecialBlendService {
     @GET("matchSample.json")
     Call<OkcResponse> listResults();
-
 }

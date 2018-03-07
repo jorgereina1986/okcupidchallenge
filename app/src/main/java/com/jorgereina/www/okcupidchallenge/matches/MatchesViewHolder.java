@@ -10,8 +10,6 @@ import com.jorgereina.www.okcupidchallenge.BaseViewHolder;
  */
 
 public class MatchesViewHolder extends BaseViewHolder {
-
-    private CardView cardView;
     public MatchesViewHolder(View itemView) {
         super(itemView);
     }

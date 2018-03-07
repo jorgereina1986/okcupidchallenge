@@ -1,17 +1,13 @@
 package com.jorgereina.www.okcupidchallenge.matches;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jorgereina.www.okcupidchallenge.R;
 import com.jorgereina.www.okcupidchallenge.model.Data;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,7 +27,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
 
     @Override
     public MatchesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(context).inflate(R.layout.profile_card_item, parent, false);
+        View itemView = LayoutInflater
+                .from(context)
+                .inflate(R.layout.profile_card_item, parent, false);
         return new MatchesViewHolder(itemView);
     }
 
@@ -45,5 +43,4 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolder> {
     public int getItemCount() {
         return dataList.size();
     }
-
 }
