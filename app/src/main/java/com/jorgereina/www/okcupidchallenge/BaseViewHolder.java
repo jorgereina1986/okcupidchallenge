@@ -1,5 +1,6 @@
 package com.jorgereina.www.okcupidchallenge;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,7 +26,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         ageLocationTv = itemView.findViewById(R.id.age_location_tv);
         usernameTv = itemView.findViewById(R.id.username_tv);
         matchPecentageTv = itemView.findViewById(R.id.match_tv);
-
     }
 
     public void bind(final Data data) {
