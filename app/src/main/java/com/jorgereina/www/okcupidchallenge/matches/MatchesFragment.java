@@ -34,8 +34,7 @@ public class MatchesFragment extends Fragment {
     private MatchesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private List<Data> dataList = new ArrayList<>();
-    CardView cardView;
-    Button button;
+    private List<Data> topSix = new ArrayList<>();
 
     @Nullable
     @Override
@@ -43,37 +42,37 @@ public class MatchesFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.matches_fragment, container, false);
         layoutManager = new GridLayoutManager(getContext(), LAYOUT_MANAGER_SPAN_COUNT);
         recyclerView = rootView.findViewById(R.id.matches_rv);
-        adapter = new MatchesAdapter(getContext(), dataList);
+        adapter = new MatchesAdapter(getContext(), dataList, topSix);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        cardView = rootView.findViewById(R.id.card_view);
         String tag = getTag();
         ((MainActivity) getActivity()).setMatchesFragment(tag);
-        button = rootView.findViewById(R.id.temp_button);
         return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        adapter.notifyDataSetChanged();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.deleteItem(0);
-            }
-        });
     }
 
     public void addDataToList(Data data) {
-        dataList.add(data);
-        Collections.sort(dataList);
-        adapter.notifyDataSetChanged();
+
+        if (!dataList.contains(data)) {
+            dataList.add(data);
+            Collections.sort(dataList);
+            Collections.sort(topSix);
+            adapter.displayOnlyTopSix();
+        }
     }
 
     public void removeDataFromList(Data data) {
-        dataList.remove(data);
-        Collections.sort(dataList);
-        adapter.notifyDataSetChanged();
+
+        if (topSix.contains(data)) {
+            dataList.remove(data);
+            topSix.remove(data);
+            Collections.sort(dataList);
+            Collections.sort(topSix);
+            adapter.displayOnlyTopSix();
+        }
     }
 }
